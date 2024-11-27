@@ -1,0 +1,110 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyvrb} % For verbatim environments in boxes
+\usepackage{tcolorbox} % For creating colored boxes
+
+\title{\textbf{SkyVault Project Report}}
+\author{Priyanshu Kumar Sharma}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Introduction}
+SkyVault is a secure personal cloud storage solution that allows users to upload, manage, and access files privately. It prioritizes data security through encryption and authentication, giving users complete control over their data. Built with Flask and the \texttt{cryptography} library, SkyVault provides an accessible and secure alternative to third-party cloud services.
+
+\section*{2. Objectives}
+The main objectives of the project are:
+\begin{itemize}
+    \item Create a private cloud storage solution.
+    \item Encrypt uploaded files for data confidentiality.
+    \item Provide a user-friendly interface for file management.
+    \item Implement robust error handling and security features.
+\end{itemize}
+
+\section*{3. Features}
+SkyVault includes:
+\begin{itemize}
+    \item \textbf{User Authentication}: Secure login with hashed passwords.
+    \item \textbf{File Encryption}: Files are encrypted using symmetric encryption.
+    \item \textbf{File Management}: Upload, view, download, and delete files.
+    \item \textbf{Error Handling}: Custom 404 and 500 error pages.
+    \item \textbf{Secure Storage}: Encrypted files stored in a protected directory.
+\end{itemize}
+
+\section*{4. Project Structure}
+The project repository is available at: \href{https://github.com/PriyanshuKSharma/SkyVault.git}{SkyVault GitHub Repository}. The directory structure is:
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, sharp corners, boxrule=0.5mm]
+\begin{Verbatim}
+project/
+├── app.py                   # Main application file
+├── uploads/                 # Original uploaded files
+├── encrypted_files/         # Encrypted files directory
+├── templates/               # HTML templates
+│   ├── index.html           # Homepage for file uploads
+│   ├── files.html           # View uploaded files
+│   ├── login.html           # Login page
+│   ├── 404.html             # Custom 404 error page
+│   ├── 500.html             # Custom 500 error page
+└── static/                  # Static files (CSS, JS)
+    └── css/
+        └── styles.css       # Custom styles
+\end{Verbatim}
+\end{tcolorbox}
+
+\section*{5. Implementation Details}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{File Upload and Encryption}:
+    Uploaded files are encrypted using the \texttt{cryptography} library before being stored in the \texttt{encrypted\_files/} directory.
+    \item \textbf{User Authentication}:
+    Passwords are securely hashed using \texttt{bcrypt}, and sessions are managed for logged-in users.
+    \item \textbf{File Management}:
+    Users can view, download, and delete their files through an intuitive interface.
+    \item \textbf{Error Handling}:
+    Custom error pages provide meaningful feedback for common issues.
+\end{enumerate}
+
+\section*{6. Usage}
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black, sharp corners, boxrule=0.5mm]
+\begin{enumerate}
+    \item Clone the repository:
+    \begin{Verbatim}
+    git clone https://github.com/PriyanshuKSharma/SkyVault.git
+    cd SkyVault
+    \end{Verbatim}
+    \item Install dependencies:
+    \begin{Verbatim}
+    pip install -r requirements.txt
+    \end{Verbatim}
+    \item Run the application:
+    \begin{Verbatim}
+    python app.py
+    \end{Verbatim}
+    \item Access the application at \texttt{http://127.0.0.1:5000/}.
+\end{enumerate}
+\end{tcolorbox}
+
+\section*{7. Future Enhancements}
+\begin{itemize}
+    \item Multi-user support for separate storage spaces.
+    \item File sharing capabilities.
+    \item Two-factor authentication (2FA).
+    \item Mobile app development for increased accessibility.
+\end{itemize}
+
+\section*{8. Conclusion}
+SkyVault offers a secure and private alternative to traditional cloud storage solutions. By combining encryption and user-friendly design, it ensures data confidentiality while providing an efficient file management system. For source code and further details, refer to the GitHub repository: \href{https://github.com/PriyanshuKSharma/SkyVault.git}{SkyVault}.
+
+\section*{9. References}
+\begin{itemize}
+    \item Flask Documentation: \url{https://flask.palletsprojects.com}
+    \item Cryptography Library: \url{https://cryptography.io}
+    \item Bootstrap Framework: \url{https://getbootstrap.com}
+\end{itemize}
+
+\end{document}
