@@ -72,16 +72,28 @@ def index():
 def login():
     if request.method == 'POST':
         username = request.form['username']
-        password = request.form['password'].encode()  # Encode password for bcrypt
+        password = request.form['password'].encode()
 
-        if username == 'admin' and bcrypt.checkpw(password, PRE_CREATED_HASH.encode()):
-            user = User(username)
-            login_user(user)
-            return redirect(url_for('index'))
-        else:
+        # Read the users from the file
+        try:
+            with open('users.txt', 'r') as file:
+                users = file.readlines()
+
+            for user in users:
+                stored_username, stored_password = user.strip().split(',')
+                if username == stored_username and bcrypt.checkpw(password, stored_password.encode()):
+                    # If credentials are correct, log the user in
+                    user = User(username)
+                    login_user(user)
+                    return redirect(url_for('index'))
+
+            # If no matching user is found
             flash("Invalid credentials", "danger")
+        except FileNotFoundError:
+            flash("No users found. Please sign up first.", "warning")
 
     return render_template('login.html')
+
 
 
 @app.route('/logout')
@@ -184,6 +196,29 @@ def page_not_found(e):
 def internal_error(e):
     return render_template('500.html', title="Internal Server Error"), 500
 
+
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        if password != confirm_password:
+            flash("Passwords do not match!", "danger")
+            return redirect(url_for('signup'))
+
+        hashed_password = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+
+        # Save the new user's credentials in a file
+        with open('users.txt', 'a') as file:
+            file.write(f"{username},{hashed_password.decode()}\n")
+
+        flash("Account created successfully! Please log in.", "success")
+        return redirect(url_for('login'))
+
+    return render_template('signup.html', title="Sign Up")
 
 
 
