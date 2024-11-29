@@ -9,24 +9,27 @@ SkyVault is a secure personal cloud storage system built using Flask. The applic
 The project is organized as follows:
 
 ```
-project/
-├── app.py                   # Main application file
-├── uploads/                 # Original uploaded files (if necessary)
-├── encrypted_files/         # All encrypted files stored here
-├── templates/               # HTML templates
-│   ├── index.html           # Homepage with file upload form
-│   ├── files.html           # Page to view uploaded files
-│   ├── login.html           # Login page
-│   ├── 404.html             # Custom 404 page
-│   ├── 500.html             # Custom 500 error page
-└── static/                  # Static files (e.g., CSS, JS)
+SkyVault/
+├── app.py                    # Main application file
+├── uploads/                  # Original uploaded files (if necessary)
+├── encrypted_files/          # All encrypted files stored here
+├── templates/                # HTML templates
+│   ├── index.html            # Homepage with file upload form
+│   ├── files.html            # Page to view uploaded files
+│   ├── login.html            # Login page
+│   ├── 404.html              # Custom 404 page
+│   ├── 500.html              # Custom 500 error page
+└── static/                   # Static files (e.g., CSS, JS)
     └── css/
-        └── styles.css       # Custom styles for the web pages
+        └── styles.css        # Custom styles for the web pages
     └── icons/
         └── image-icon.png
         └── pdf-icon.png
-
+├── requirements.txt          # Python dependencies for the project
+└── README.md                 # Project documentation
 ```
+
+---
 
 ## Installation
 
@@ -133,3 +136,4 @@ This project is not licensed.
 - Cryptography: Provides secure file encryption and decryption using `Fernet` symmetric encryption.
 - Bcrypt: Used for securely hashing passwords.
 
+---
