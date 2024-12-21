@@ -16,7 +16,6 @@
 
 % Add the image at the top of the document
 
-
 % Now, create the title
 \maketitle
 
@@ -113,4 +112,55 @@ SkyVault offers a secure and private alternative to traditional cloud storage so
     \item Bootstrap Framework: \url{https://getbootstrap.com}
 \end{itemize}
 
+\section*{10. Docker Integration}
+SkyVault can be containerized using Docker for seamless deployment and scalability. Follow the steps below to run SkyVault using Docker.
+
+\begin{tcolorbox}[colback=gray!5!white, colframe=gray!75!black, sharp corners, boxrule=0.5mm]
+\begin{Verbatim}
+# Step 1: Build the Docker image
+docker build -t skyvault .
+
+# Step 2: Run the Docker container
+docker run -d -p 5000:5000 --name skyvault-container skyvault
+
+# Step 3: Stop the container (if needed)
+docker stop skyvault-container
+
+# Step 4: Restart the container
+docker start skyvault-container
+
+# Step 5: Remove the container (if no longer needed)
+docker rm skyvault-container
+\end{Verbatim}
+\end{tcolorbox}
+
+\textbf{Dockerfile:}
+Below is the Dockerfile used for creating the Docker image for SkyVault.
+
+\begin{tcolorbox}[colback=blue!5!white, colframe=blue!75!black, sharp corners, boxrule=0.5mm]
+\begin{Verbatim}
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
+
+# Define environment variable
+ENV FLASK_APP=app.py
+
+# Run the application
+CMD ["flask", "run", "--host=0.0.0.0"]
+\end{Verbatim}
+\end{tcolorbox}
+
 \end{document}
+``` 
