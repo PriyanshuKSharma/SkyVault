@@ -49,7 +49,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/SkyVault.git
+   git clone https://github.com/PriyanshuKSharma/SkyVault.git
    cd SkyVault
    ```
 
@@ -97,7 +97,7 @@ Ensure that Docker and Docker Compose are installed on your system.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/SkyVault.git
+   git clone https://github.com/PriyanshuKSharma/SkyVault.git
    cd SkyVault
    ```
 
