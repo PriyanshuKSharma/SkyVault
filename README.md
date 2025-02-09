@@ -237,7 +237,7 @@ http://127.0.0.1:5000
 
 ---  
 
-### **Alternative: Use Docker Hub**  
+### **Alternative: Use [Docker Hub](https://hub.docker.com/r/priyanshuksharma/skyvault-cloud)**  
 If the target system has internet access, you can pull the image directly from Docker Hub:  
 
 1. Log in to Docker Hub (if necessary):  
