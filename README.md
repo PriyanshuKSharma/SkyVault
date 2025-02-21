@@ -27,6 +27,7 @@ SkyVault/
         └── pdf-icon.png
 ├── requirements.txt          # Python dependencies for the project
 ├── Dockerfile                # Docker configuration for building the application image
+├── .gitlab-ci.yml            # Implemented pipeline
 ├── docker-compose.yml        # Docker Compose configuration file
 └── README.md                 # Project documentation
 ```
