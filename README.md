@@ -178,7 +178,7 @@ If you have any questions or need help, please:
 ---
 
 <div align="center">
-  Made with ❤️ by [Your Name]
+  Made with ❤️ by Priyanshu K Sharma
   
   ⭐ Star this repository if you found it helpful!
 </div>
