@@ -1,9 +1,14 @@
 version: '3.8'
+
 services:
-  web:
+  skyvault:
     build: .
     ports:
       - "5000:5000"
     environment:
-      - FLASK_APP=app.py
-      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_ENV=production
+      - SECRET_KEY=your-secret-key-change-this
+    volumes:
+      - ./uploads:/app/uploads
+      - ./encrypted_files:/app/encrypted_files
+    restart: unless-stopped

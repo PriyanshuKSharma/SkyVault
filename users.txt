@@ -4,3 +4,5 @@ neha,$2b$12$Wq0Hb4t3KlTPrmgNBnQRIelSN3FEUuRUymbB8EroWpdb9urHiX9NW
 tanmay,$2b$12$5KaEO.qTEM5NVWXHp7wn4OCjh8KCqyFY40a42SlHDfISYrkaUWJda
 komal,$2b$12$nRpIBDolTr20p1xvETPFuu7W7y/1wIeDqND2PQB4E.A4zX8zqtgKS
 prajwal,$2b$12$ibETep5k8qvhrH/8.QLiLuMudZ.n8pLo.LaemILBrLQi0cv1MZs16
+user1,$2b$12$3IJ8/VfrrZ/0p.46FtWsqek72C.XMgc6rX1oeCA4os60HMKK06JW.
+user12,$2b$12$0FkI4hqbm55nLsQU3dUKAu3cFFYq7f6ikgec8LeHy1LYugvOZBZJe

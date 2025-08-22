@@ -1,48 +1,145 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Page content starts here -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
 <div class="container mt-4">
-    <h2 class="text-center mb-4">Upload Your Files</h2>
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">Secure Cloud Storage</h1>
+        <p class="lead text-muted mb-4">Upload, encrypt, and manage your files with military-grade security</p>
+        <div class="hero-icons d-flex justify-content-center gap-4 mb-4">
+            <div class="feature-icon">
+                <i class="bi bi-shield-lock"></i>
+                <small>Encrypted</small>
+            </div>
+            <div class="feature-icon">
+                <i class="bi bi-cloud-upload"></i>
+                <small>Fast Upload</small>
+            </div>
+            <div class="feature-icon">
+                <i class="bi bi-device-hdd"></i>
+                <small>Secure Storage</small>
+            </div>
+        </div>
+    </div>
 
-    <!-- Flash Messages for Feedback -->
+    <!-- Flash Messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
-            <div class="alert alert-dismissible fade show" role="alert">
-                <ul>
-                    {% for category, message in messages %}
-                        <li class="alert-{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show stagger-item" role="alert">
+                    <i class="bi bi-{% if category == 'success' %}check-circle{% elif category == 'danger' %}exclamation-triangle{% else %}info-circle{% endif %} me-2"></i>
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
         {% endif %}
     {% endwith %}
 
-    <!-- File upload form -->
+    <!-- Upload Section -->
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">Select a file to upload</h4>
-                </div>
-                <div class="card-body">
-                    <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="file" class="form-label">Choose file</label>
-                            <input type="file" class="form-control" id="file" name="file" required>
+            <div class="card upload-card">
+                <div class="card-body p-4">
+                    <div class="upload-icon text-center mb-4">
+                        <i class="bi bi-cloud-arrow-up display-1"></i>
+                    </div>
+                    
+                    <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data" class="upload-form">
+                        <div class="upload-area mb-4" id="uploadArea">
+                            <input type="file" class="form-control" id="file" name="file" required hidden>
+                            <div class="upload-content text-center py-5">
+                                <i class="bi bi-plus-circle display-4 text-muted mb-3"></i>
+                                <h5 class="mb-2">Drag & Drop your files here</h5>
+                                <p class="text-muted mb-3">or click to browse</p>
+                                <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('file').click()">
+                                    <i class="bi bi-folder2-open me-2"></i>Choose File
+                                </button>
+                            </div>
+                            <div class="file-info d-none" id="fileInfo">
+                                <div class="d-flex align-items-center justify-content-between p-3 bg-light rounded">
+                                    <div class="d-flex align-items-center">
+                                        <i class="bi bi-file-earmark text-primary me-2"></i>
+                                        <span id="fileName"></span>
+                                    </div>
+                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearFile()">
+                                        <i class="bi bi-x"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" class="btn btn-success w-100">Upload</button>
+                        
+                        <button type="submit" class="btn btn-primary w-100 upload-btn" disabled>
+                            <span class="btn-text">
+                                <i class="bi bi-cloud-upload me-2"></i>Upload Securely
+                            </span>
+                            <span class="loading-spinner d-none">
+                                <span class="spinner-border spinner-border-sm me-2"></span>Uploading...
+                            </span>
+                        </button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Back to Files Link -->
-    <div class="text-center mt-4">
-        <a href="{{ url_for('files') }}" class="btn btn-outline-primary">View Uploaded Files</a>
+    <!-- Quick Actions -->
+    <div class="text-center mt-5">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="{{ url_for('files') }}" class="btn btn-outline-primary">
+                <i class="bi bi-folder2-open me-2"></i>View My Files
+            </a>
+            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#helpModal">
+                <i class="bi bi-question-circle me-2"></i>How it Works
+            </button>
+        </div>
     </div>
 </div>
+
+<script>
+const uploadArea = document.getElementById('uploadArea');
+const fileInput = document.getElementById('file');
+const fileInfo = document.getElementById('fileInfo');
+const fileName = document.getElementById('fileName');
+const uploadBtn = document.querySelector('.upload-btn');
+const uploadContent = document.querySelector('.upload-content');
+
+uploadArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    uploadArea.classList.add('drag-over');
+});
+
+uploadArea.addEventListener('dragleave', () => {
+    uploadArea.classList.remove('drag-over');
+});
+
+uploadArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    uploadArea.classList.remove('drag-over');
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+        fileInput.files = files;
+        showFileInfo(files[0]);
+    }
+});
+
+fileInput.addEventListener('change', (e) => {
+    if (e.target.files.length > 0) {
+        showFileInfo(e.target.files[0]);
+    }
+});
+
+function showFileInfo(file) {
+    fileName.textContent = file.name;
+    uploadContent.classList.add('d-none');
+    fileInfo.classList.remove('d-none');
+    uploadBtn.disabled = false;
+}
+
+function clearFile() {
+    fileInput.value = '';
+    uploadContent.classList.remove('d-none');
+    fileInfo.classList.add('d-none');
+    uploadBtn.disabled = true;
+}
+</script>
 {% endblock %}

@@ -1,8 +1,49 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1 class="text-center text-danger">404 - Page Not Found</h1>
-<p class="text-center">The page you are looking for does not exist.</p>
-<div class="text-center">
-    <a href="/" class="btn btn-primary">Back to Home</a>
+<div class="error-container text-center">
+    <div class="error-animation mb-4">
+        <div class="error-icon">
+            <i class="bi bi-exclamation-triangle display-1"></i>
+        </div>
+        <div class="error-code">
+            <h1 class="display-1 fw-bold text-primary">404</h1>
+        </div>
+    </div>
+    
+    <div class="error-content">
+        <h2 class="mb-3">Page Not Found</h2>
+        <p class="lead text-muted mb-4">The page you're looking for seems to have vanished into the cloud.</p>
+        
+        <div class="error-suggestions mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="suggestion-cards">
+                        <div class="suggestion-card">
+                            <i class="bi bi-house-door"></i>
+                            <span>Go to Homepage</span>
+                        </div>
+                        <div class="suggestion-card">
+                            <i class="bi bi-folder2-open"></i>
+                            <span>View Your Files</span>
+                        </div>
+                        <div class="suggestion-card">
+                            <i class="bi bi-cloud-upload"></i>
+                            <span>Upload Files</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="error-actions">
+            <a href="/" class="btn btn-primary btn-lg me-3">
+                <i class="bi bi-house-door me-2"></i>Back to Home
+            </a>
+            <button class="btn btn-outline-secondary btn-lg" onclick="history.back()">
+                <i class="bi bi-arrow-left me-2"></i>Go Back
+            </button>
+        </div>
+    </div>
 </div>
 {% endblock %}

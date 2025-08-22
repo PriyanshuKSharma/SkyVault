@@ -1,8 +1,57 @@
 {% extends "base.html" %}
+
 {% block content %}
-<h1 class="text-center text-danger">500 - Internal Server Error</h1>
-<p class="text-center">An unexpected error occurred. Please try again later.</p>
-<div class="text-center">
-    <a href="/" class="btn btn-primary">Back to Home</a>
+<div class="error-container text-center">
+    <div class="error-animation mb-4">
+        <div class="error-icon">
+            <i class="bi bi-exclamation-octagon display-1"></i>
+        </div>
+        <div class="error-code">
+            <h1 class="display-1 fw-bold text-danger">500</h1>
+        </div>
+    </div>
+    
+    <div class="error-content">
+        <h2 class="mb-3">Server Error</h2>
+        <p class="lead text-muted mb-4">Something went wrong on our end. Our team has been notified.</p>
+        
+        <div class="error-details mb-5">
+            <div class="alert alert-warning d-inline-block">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong>What happened?</strong> An unexpected error occurred while processing your request.
+            </div>
+        </div>
+        
+        <div class="error-suggestions mb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h5 class="mb-3">You can try:</h5>
+                    <div class="suggestion-list">
+                        <div class="suggestion-item">
+                            <i class="bi bi-arrow-clockwise text-primary"></i>
+                            <span>Refreshing the page</span>
+                        </div>
+                        <div class="suggestion-item">
+                            <i class="bi bi-clock text-warning"></i>
+                            <span>Waiting a few minutes and trying again</span>
+                        </div>
+                        <div class="suggestion-item">
+                            <i class="bi bi-house-door text-success"></i>
+                            <span>Going back to the homepage</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="error-actions">
+            <button class="btn btn-primary btn-lg me-3" onclick="location.reload()">
+                <i class="bi bi-arrow-clockwise me-2"></i>Try Again
+            </button>
+            <a href="/" class="btn btn-outline-secondary btn-lg">
+                <i class="bi bi-house-door me-2"></i>Back to Home
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -1,5 +1,7 @@
-Flask==2.3.2
+Flask==2.3.3
+Flask-Login==0.6.3
 Werkzeug==2.3.7
-flask-login==0.6.2
-cryptography==41.0.3
+cryptography==41.0.7
 bcrypt==4.0.1
+python-dotenv==1.0.0
+gunicorn==21.2.0

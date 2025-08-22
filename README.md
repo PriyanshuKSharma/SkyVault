@@ -1,280 +1,184 @@
-# **SkyVault - Personal Cloud Storage**
+# 🌟 SkyVault - Secure Personal Cloud Storage
 
-SkyVault is a secure personal cloud storage system built using Flask. The application allows users to upload files, which are then encrypted before storage, ensuring privacy and security. Users can log in, upload, view, download, and delete their encrypted files securely.
+<div align="center">
+  <img src="static/icons/image-icon.png" alt="SkyVault Logo" width="100" height="100">
+  
+  [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+  [![Flask](https://img.shields.io/badge/Flask-2.0+-green.svg)](https://flask.palletsprojects.com)
+  [![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://docker.com)
+  [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+</div>
 
----
+## 📋 Overview
 
-## **Project Structure**
+SkyVault is a modern, secure personal cloud storage system built with Flask. It provides military-grade encryption for your files with an intuitive, glassmorphism-inspired user interface.
 
-The project is organized as follows:
+### ✨ Key Features
 
-```
-SkyVault/
-├── app.py                    # Main application file
-├── uploads/                  # Original uploaded files (if necessary)
-├── encrypted_files/          # All encrypted files stored here
-├── templates/                # HTML templates
-│   ├── index.html            # Homepage with file upload form
-│   ├── files.html            # Page to view uploaded files
-│   ├── login.html            # Login page
-│   ├── 404.html              # Custom 404 page
-│   ├── 500.html              # Custom 500 error page
-└── static/                   # Static files (e.g., CSS, JS)
-    └── css/
-        └── styles.css        # Custom styles for the web pages
-    └── icons/
-        └── image-icon.png
-        └── pdf-icon.png
-├── requirements.txt          # Python dependencies for the project
-├── Dockerfile                # Docker configuration for building the application image
-├── .gitlab-ci.yml            # Implemented pipeline
-├── docker-compose.yml        # Docker Compose configuration file
-└── README.md                 # Project documentation
-```
+- 🔐 **End-to-End Encryption** - Files encrypted with Fernet symmetric encryption
+- 🎨 **Modern UI/UX** - Glassmorphism design with smooth animations
+- 📱 **Responsive Design** - Works seamlessly on all devices
+- 🚀 **Drag & Drop Upload** - Intuitive file upload experience
+- 👤 **User Authentication** - Secure login with password hashing
+- 🐳 **Docker Support** - Easy deployment with containerization
+- 📊 **File Management** - View, download, and delete files securely
 
----
+## 🚀 Quick Start
 
-## **Installation**
+### Prerequisites
 
-### **Using Python**
-
-### **Prerequisites**
-
-Make sure you have the following installed:
-
-- Python 3.x
+- Python 3.8+
 - pip (Python package installer)
 
-### **Steps to Setup**
+### Installation
 
-1. Clone the repository:
-
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/PriyanshuKSharma/SkyVault.git
+   git clone https://github.com/yourusername/SkyVault.git
    cd SkyVault
    ```
 
-2. Create a virtual environment:
-
+2. **Create virtual environment**
    ```bash
    python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
-3. Activate the virtual environment:
-
-   - **For Windows**:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - **For macOS/Linux**:
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. Install the required dependencies:
-
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-5. Run the application:
-
+4. **Run the application**
    ```bash
    python app.py
    ```
 
-   The app will be available at `http://127.0.0.1:5000/`.
+5. **Access the application**
+   Open your browser and navigate to `http://127.0.0.1:5000`
 
----
+## 🐳 Docker Deployment
 
-## **Using Docker**
+### Using Docker
 
-### **Prerequisites**
+```bash
+# Build the image
+docker build -t skyvault .
 
-Ensure that Docker and Docker Compose are installed on your system.
+# Run the container
+docker run -p 5000:5000 skyvault
+```
 
-### **Steps to Setup**
+### Using Docker Compose
 
-1. Clone the repository:
+```bash
+docker-compose up
+```
 
-   ```bash
-   git clone https://github.com/PriyanshuKSharma/SkyVault.git
-   cd SkyVault
-   ```
-
-2. Build the Docker image:
-
-   ```bash
-   docker build -t priyanshuksharma/skyvault-cloud:1.0 .
-   ```
-
-3. Run the application using Docker:
-
-   ```bash
-   docker run -p 5000:5000 priyanshuksharma/skyvault-cloud:1.0
-   ```
-
-   The app will be available at `http://127.0.0.1:5000/`.
-
-4. Alternatively, use Docker Compose to set up and run the application:
-
-   ```bash
-   docker-compose up
-   ```
-
----
-
-## **Pushing to Docker Hub**
-
-If you want to share your Docker image, you can push it to Docker Hub:
-
-1. Tag the Docker image:
-
-   ```bash
-   docker tag skyvault-cloud:1.0 priyanshuksharma/skyvault-cloud:1.0
-   ```
-
-2. Push the image to Docker Hub:
-
-   ```bash
-   docker push priyanshuksharma/skyvault-cloud:1.0
-   ```
-
-Your image will now be available on Docker Hub at `https://hub.docker.com/repository/docker/priyanshuksharma/skyvault-cloud`.
-
----
-
-## **Features**
-
-- **User Authentication**: Secure login functionality with password hashing.
-- **File Uploads**: Users can upload files which are automatically encrypted using `Fernet` encryption.
-- **File Management**: Users can view, download, and delete their uploaded files securely.
-- **Error Handling**: Custom error pages for 404 (not found) and 500 (server error).
-- **Secure Storage**: All uploaded files are stored in the `encrypted_files/` directory.
-
----
-
-## **How to Use**
-
-1. **Login**: Access the login page at `/login` and enter your credentials.
-2. **Upload Files**: After logging in, navigate to the homepage to upload files. The files will be encrypted before storage.
-3. **View Files**: After uploading files, you can view all your uploaded files on the `/files` page.
-4. **Download Files**: You can download your encrypted files from the `/download/<filename>` route.
-5. **Delete Files**: Delete any uploaded file from the `/delete/<filename>` route.
-
----
-
-## **File Encryption**
-
-Uploaded files are encrypted using the `cryptography` package with `Fernet` symmetric encryption. The encrypted files are stored in the `encrypted_files/` directory, ensuring that the files are only accessible to authenticated users.
-
----
-
-## **Error Pages**
-
-- **404.html**: Custom page shown when a route or file is not found.
-- **500.html**: Custom page shown for internal server errors.
-
----
-
-## **Future Enhancements**
-
-- **Multiple User Support**: Add functionality to allow multiple users with separate storage spaces.
-- **File Sharing**: Enable sharing of files between users or publicly.
-- **More Secure Authentication**: Implement additional authentication features, like multi-factor authentication (MFA).
-- **File Compression**: Add a feature for compressing large files before uploading them.
-
----
-
-## Running the Docker Image on Another System  
-
-If you want to run the SkyVault application on another system using Docker, follow these steps:  
-
-### **1. Save the Docker Image**  
-On your system, save the Docker image to a tar file:  
-
-```bash  
-docker save -o skyvault-cloud.tar priyanshuksharma/skyvault-cloud:1.0  
-```  
-
-This will create a file named `skyvault-cloud.tar` that contains your Docker image.  
-
----  
-
-### **2. Transfer the Docker Image**  
-Copy the `skyvault-cloud.tar` file to the target system. You can use a USB drive, file-sharing services, SCP, or any preferred method.  
-
----  
-
-### **3. Load the Docker Image**  
-On the target system, load the Docker image from the tar file:  
-
-```bash  
-docker load -i skyvault-cloud.tar  
-```  
-
-After loading, verify that the image is available:  
-
-```bash  
-docker images  
-```  
-
-You should see the image listed (e.g., `priyanshuksharma/skyvault-cloud:1.0`).  
-
----  
-
-### **4. Run the Docker Image**  
-Start the container using:  
-
-```bash  
-docker run -p 5000:5000 priyanshuksharma/skyvault-cloud:1.0  
-```  
-
-This maps port `5000` on the local system to port `5000` in the container. Open a browser and access the application at:  
+## 📁 Project Structure
 
 ```
-http://127.0.0.1:5000  
-```  
+SkyVault/
+├── app.py                 # Main Flask application
+├── requirements.txt       # Python dependencies
+├── Dockerfile            # Docker configuration
+├── docker-compose.yml    # Docker Compose setup
+├── .gitignore           # Git ignore rules
+├── templates/           # HTML templates
+│   ├── base.html        # Base template
+│   ├── index.html       # Homepage
+│   ├── files.html       # File management
+│   ├── login.html       # Login page
+│   ├── signup.html      # Registration page
+│   ├── upload.html      # File upload
+│   ├── 404.html         # Error page
+│   └── 500.html         # Error page
+├── static/              # Static assets
+│   ├── css/
+│   │   └── styles.css   # Custom styles
+│   └── icons/           # Application icons
+├── uploads/             # Temporary uploads (gitignored)
+└── encrypted_files/     # Encrypted storage (gitignored)
+```
 
----  
+## 🔧 Configuration
 
-### **Alternative: Use [Docker Hub](https://hub.docker.com/r/priyanshuksharma/skyvault-cloud)**  
-If the target system has internet access, you can pull the image directly from Docker Hub:  
+### Environment Variables
 
-1. Log in to Docker Hub (if necessary):  
-   ```bash  
-   docker login  
-   ```  
+Create a `.env` file in the root directory:
 
-2. Pull the image:  
-   ```bash  
-   docker pull priyanshuksharma/skyvault-cloud:1.0  
-   ```  
+```env
+FLASK_ENV=development
+SECRET_KEY=your-secret-key-here
+UPLOAD_FOLDER=uploads
+ENCRYPTED_FOLDER=encrypted_files
+```
 
-3. Run the container:  
-   ```bash  
-   docker run -p 5000:5000 priyanshuksharma/skyvault-cloud:1.0  
-   ```  
+## 🎨 UI Features
+
+- **Glassmorphism Design** - Modern transparent cards with backdrop blur
+- **Smooth Animations** - CSS transitions and keyframe animations
+- **Interactive Elements** - Drag & drop, hover effects, loading states
+- **Responsive Layout** - Mobile-first design approach
+- **Dark Theme** - Elegant gradient backgrounds
+
+## 🔒 Security Features
+
+- **File Encryption** - All files encrypted using Fernet symmetric encryption
+- **Password Hashing** - Secure password storage with bcrypt
+- **Session Management** - Flask-Login for secure user sessions
+- **Input Validation** - Server-side validation for all inputs
+
+## 🚀 Deployment Options
+
+### GitHub Pages (Static Demo)
+- Fork this repository
+- Enable GitHub Pages in repository settings
+- Access via `https://yourusername.github.io/SkyVault`
+
+### Heroku
+```bash
+# Install Heroku CLI and login
+heroku create your-app-name
+git push heroku main
+```
+
+### Railway
+```bash
+# Connect your GitHub repository to Railway
+# Deploy with one click
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Flask** - Micro web framework
+- **Bootstrap** - UI components and responsive design
+- **Bootstrap Icons** - Beautiful icon library
+- **Cryptography** - File encryption capabilities
+
+## 📞 Support
+
+If you have any questions or need help, please:
+- Open an issue on GitHub
+- Check the documentation
+- Contact the maintainers
 
 ---
 
-### **Note**  
-- Ensure Docker is installed on the target system.  
-- Replace `1.0` with the appropriate version tag if needed.  
-
----
-
-## **License**
-
-This project is not licensed.
-
----
-
-## **Acknowledgments**
-
-- Flask: A micro web framework used to build the web application.
-- Cryptography: Provides secure file encryption and decryption using `Fernet` symmetric encryption.
-- Bcrypt: Used for securely hashing passwords.
-- Docker: Simplified application deployment with containerization.
-
----
+<div align="center">
+  Made with ❤️ by [Your Name]
+  
+  ⭐ Star this repository if you found it helpful!
+</div>
